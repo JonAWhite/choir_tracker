@@ -4,13 +4,6 @@ class SongInfo:
         self.number = number
         self.title = title
 
-    def book():
-        return self.book
-
-    def number():
-        return self.number
-
-    def title():
-        return self.title
-
-
+    def __str__(self):
+        string = self.book + str(self.number) + ": " + self.title
+        return string
