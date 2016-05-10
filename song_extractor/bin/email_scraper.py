@@ -1,15 +1,14 @@
 from __future__ import print_function
 import base64
-import email
 import httplib2
-import json
+# import json
 import os
-import re
 
 from apiclient import discovery
 import oauth2client
 from oauth2client import client
 from oauth2client import tools
+from classes.jason_song_list_extractor import JasonSongListExtractor
 
 try:
     import argparse
@@ -90,7 +89,7 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
 
-    search_results = service.users().messages().list(userId='me', labelIds=None, q='"Songs for Sunday" from: Jason Baisch', maxResults=2).execute()
+    search_results = service.users().messages().list(userId='me', labelIds=None, q='"Songs for Sunday" from: Jason Baisch', maxResults=10).execute()
     messages = search_results.get('messages', [])
 
     if not messages:
@@ -102,6 +101,14 @@ def main():
         subject = get_header_value(email_results, "Subject")
         date = get_header_value(email_results, "Date")
         body = get_full_body(email_results, "text/plain")
+        # f = open('saved_songs.txt', 'w')
+        # f.write(body)
+        # f.close()
+        songs_extractor = JasonSongListExtractor(body)
+        song_list = songs_extractor.extract_song_list()
+        song_list.set_date(date)
+        print(song_list)
+
 
 if __name__ == '__main__':
     main()
