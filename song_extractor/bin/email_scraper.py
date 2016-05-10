@@ -101,7 +101,7 @@ def main():
         subject = get_header_value(email_results, "Subject")
         date = get_header_value(email_results, "Date")
         body = get_full_body(email_results, "text/plain")
-        # f = open('saved_songs.txt', 'w')
+        # f = open('saved_songs.txt', 'a')
         # f.write(body)
         # f.close()
         songs_extractor = JasonSongListExtractor(body)
