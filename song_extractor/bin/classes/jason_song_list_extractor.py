@@ -10,10 +10,8 @@ class JasonSongListExtractor(SongListExtractor):
         song_list = SongList("Jason Baisch")
         song_lines = []
         if self.does_html_contain_table() == False:
-            print("HTML doesn't contain a table")
             song_lines = self.remove_non_song_lines()
         else:
-            print("HTML contains a table")
             song_lines = self.convert_tables_to_lines()
 
         for song_line in song_lines:
@@ -23,6 +21,7 @@ class JasonSongListExtractor(SongListExtractor):
         return song_list
 
     def get_info_from_line(self, song_line):
+        song_line = self.remove_markdown(song_line)
         word_groups = self.get_word_groups_from_line(song_line)
         title = self.pick_title_from_word_groups(word_groups)
 

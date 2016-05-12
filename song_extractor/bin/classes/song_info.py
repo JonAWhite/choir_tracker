@@ -1,4 +1,3 @@
-
 class SongInfo:
 
     def __init__(self, book, number, title):

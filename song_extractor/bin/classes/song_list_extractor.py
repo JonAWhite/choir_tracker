@@ -1,5 +1,6 @@
 from __future__ import print_function
 from bs4 import BeautifulSoup
+from markdown import markdown
 from song_list import SongList
 import re
 
@@ -34,6 +35,11 @@ class SongListExtractor:
     def count_words(self, text):
         count = len(re.findall(r'\w+', text))
         return count
+
+    def remove_markdown(self, line):
+        html = markdown(line)
+        text = ''.join(BeautifulSoup(html).findAll(text=True), "html5lib")
+        return text
 
     def get_word_groups_from_line(self, song_line):
         word_groups = []
