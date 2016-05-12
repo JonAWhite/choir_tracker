@@ -37,7 +37,7 @@ class SongListExtractor:
 
     def get_word_groups_from_line(self, song_line):
         word_groups = []
-        for m in re.finditer(r"(?:^|\s)([A-Za-z,! ]+)(?:\s|$)", song_line):
+        for m in re.finditer(r"(?:^|\s)([A-Za-z,'! ]+)(?:\s|$)", song_line):
             # print(song_line + " => '" + m.group(0).strip() + "'")
             word_groups.append(m.group(0).strip())
 
