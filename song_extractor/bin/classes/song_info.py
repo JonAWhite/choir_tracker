@@ -1,4 +1,6 @@
+
 class SongInfo:
+
     def __init__(self, book, number, title):
         self.book = book
         self.number = number

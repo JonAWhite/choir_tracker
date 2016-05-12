@@ -46,13 +46,14 @@ def get_credentials():
         flow.user_agent = APPLICATION_NAME
         if flags:
             credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
+        else:  # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def get_full_body( message, mimeType ):
-    parts = message['payload']['parts'];
+
+def get_full_body(message, mimeType):
+    parts = message['payload']['parts']
     full_body = ""
     for part in parts:
         if part['mimeType'] != mimeType:
@@ -63,20 +64,21 @@ def get_full_body( message, mimeType ):
 
     return full_body
 
-def get_header_value( message, name ):
-    headers = message['payload']['headers'];
+
+def get_header_value(message, name):
+    headers = message['payload']['headers']
     date = ""
     for header in headers:
         if header['name'] != name:
             continue
         else:
-            date = header['value'] 
+            date = header['value']
 
-    return date; 
+    return date
 
 # def get_songs_from_text( text ):
-    # lines = text.splitlines()
-    # lines_with_numbers = re.findall(r'0-9', lines)
+# lines = text.splitlines()
+# lines_with_numbers = re.findall(r'0-9', lines)
 
 
 def main():
@@ -89,26 +91,33 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
 
-    search_results = service.users().messages().list(userId='me', labelIds=None, q='"Songs for Sunday" from: Jason Baisch', maxResults=10).execute()
+    search_results = service.users().messages().list(
+        userId='me',
+        labelIds=None,
+        q='"Songs for Sunday" from: Jason Baisch',
+        maxResults=10).execute()
     messages = search_results.get('messages', [])
 
     if not messages:
         print('No messages found.')
     else:
-      print('Messages:')
-      for message in messages:
-        email_results = service.users().messages().get(userId='me', id=message['id'], format='full').execute()
-        subject = get_header_value(email_results, "Subject")
-        date = get_header_value(email_results, "Date")
-        body = get_full_body(email_results, "text/html")
-        # body = get_full_body(email_results, "text/plain")
-        f = open('saved_songs_html.txt', 'a')
-        f.write(body)
-        f.close()
-        songs_extractor = JasonSongListExtractor(body)
-        song_list = songs_extractor.extract_song_list()
-        song_list.set_date(date)
-        print(song_list)
+        print('Messages:')
+        for message in messages:
+            email_results = service.users().messages().get(
+                userId='me', id=message['id'],
+                format='full').execute()
+            subject = get_header_value(email_results, "Subject")
+            date = get_header_value(email_results, "Date")
+            html = get_full_body(email_results, "text/html")
+            text = get_full_body(email_results, "text/plain")
+            # body = get_full_body(email_results, "text/plain")
+            # f = open('saved_songs_html.txt', 'a')
+            # f.write(body)
+            # f.close()
+            songs_extractor = JasonSongListExtractor(text, html)
+            song_list = songs_extractor.extract_song_list()
+            song_list.set_date(date)
+            print(song_list)
 
 
 if __name__ == '__main__':

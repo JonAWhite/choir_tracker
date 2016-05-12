@@ -1,7 +1,9 @@
 class SongList:
+
     def __init__(self, director):
         self.director = director
         self.song_infos = []
+        self.date = ""
 
     def add_song_info(self, song_info):
         self.song_infos.append(song_info)

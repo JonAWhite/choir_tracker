@@ -1,10 +1,14 @@
 from __future__ import print_function
+from bs4 import BeautifulSoup
 from song_list import SongList
 import re
 
+
 class SongListExtractor:
-    def __init__(self, text):
+
+    def __init__(self, text, html):
         self.text = text
+        self.html = html
 
     def extract_song_list(self):
         song_list = SongList("")
@@ -25,7 +29,7 @@ class SongListExtractor:
 
     def contains_number(self, line):
         result = re.search(r"(\d+)", line)
-        return result != None 
+        return result != None
 
     def count_words(self, text):
         count = len(re.findall(r'\w+', text))
@@ -41,9 +45,9 @@ class SongListExtractor:
 
     def get_number_groups_from_line(self, song_line):
         number_groups = []
-        for m in re.finditer(r"(?:^|\s)((?:[CH])?[0-9]+)(?:\s|$)", song_line):
+        for match in re.finditer(r"(?:^|\s)((?:[CH])?[0-9]+)(?:\s|$)", song_line):
             # print(song_line + " => '" + m.group(0).strip() + "'")
-            number_groups.append(m.group(0).strip())
+            number_groups.append(match.group(0).strip())
 
         return number_groups
 
@@ -60,7 +64,7 @@ class SongListExtractor:
             if self.count_words(word_group) > 1:
                 title = word_group
                 break
-            
+
         return title
 
     def pick_book_and_number_from_number_groups(self, number_groups):
@@ -91,3 +95,34 @@ class SongListExtractor:
             book = "CB"
 
         return book, number
+
+    def does_html_contain_table(self):
+        soup = BeautifulSoup(self.html, "html5lib")
+        return len(soup.findAll("table")) > 0
+
+    def convert_tables_to_lines(self):
+        filtered_lines = []
+        ugly_soup = BeautifulSoup(self.html, "html5lib")
+        soup = BeautifulSoup(
+            ugly_soup.prettify(formatter=lambda s: s.replace(u'\xa0', ' ')),
+            "html5lib")
+        tables = soup.findAll("table")
+        for table in tables:
+            rows = table.findAll('tr')
+            for row in rows:
+                line = self.convert_row_to_line(row)
+                # print(line)
+                filtered_lines.append(line)
+        return filtered_lines
+
+    def convert_row_to_line(self, row):
+        line = ""
+        cells = row.findAll("td")
+        for cell in cells:
+            cell_text = cell.get_text()
+            if cell_text != None:
+                cell_text = re.sub(r"\s*\n\s*", ' ', cell_text.strip())
+                if self.contains_number(cell_text) == True:
+                    cell_text = re.sub(r"[ ]*", '', cell_text)
+                line += cell_text + " "
+        return line.strip()
