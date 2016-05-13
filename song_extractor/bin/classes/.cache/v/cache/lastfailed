@@ -1,1 +1,3 @@
-{}
+{
+  "test_jason_song_list_extractor.py::JasonSongListExtractorTestCase::test_songs_with_parenthesis": true
+}

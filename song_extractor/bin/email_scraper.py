@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 import base64
 import httplib2
@@ -60,7 +61,7 @@ def get_full_body(message, mimeType):
             continue
         else:
             data = part['body']['data']
-            full_body = base64.urlsafe_b64decode(data.encode('ascii'))
+            full_body = base64.urlsafe_b64decode(data.encode('utf-8'))
 
     return full_body
 
@@ -95,7 +96,7 @@ def main():
         userId='me',
         labelIds=None,
         q='"Songs for Sunday" from: Jason Baisch',
-        maxResults=10).execute()
+        maxResults=20).execute()
     messages = search_results.get('messages', [])
 
     if not messages:
@@ -110,11 +111,13 @@ def main():
             date = get_header_value(email_results, "Date")
             html = get_full_body(email_results, "text/html")
             text = get_full_body(email_results, "text/plain")
-            # body = get_full_body(email_results, "text/plain")
-            # f = open('saved_songs_html.txt', 'a')
-            # f.write(body)
-            # f.close()
-            songs_extractor = JasonSongListExtractor(text, html)
+            f = open('saved_songs_html.txt', 'a')
+            f.write(html)
+            f.close()
+            f = open('saved_songs.txt', 'a')
+            f.write(text)
+            f.close()
+            songs_extractor = JasonSongListExtractor(text.decode('utf-8'), html.decode('utf-8'))
             song_list = songs_extractor.extract_song_list()
             song_list.set_date(date)
             print(song_list)

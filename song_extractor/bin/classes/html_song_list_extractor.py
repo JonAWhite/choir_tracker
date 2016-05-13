@@ -1,8 +1,8 @@
-
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 from classes.song_list import SongList
 from bs4 import BeautifulSoup
-import re
+import regex as re
 
 
 class HTMLSongListExtractor:

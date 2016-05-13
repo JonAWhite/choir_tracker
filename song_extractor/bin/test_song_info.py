@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 from classes.song_info import SongInfo
 from classes.song_list import SongList

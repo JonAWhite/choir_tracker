@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SongList:
 
     def __init__(self, director):
@@ -12,7 +13,12 @@ class SongList:
         self.date = date
 
     def __str__(self):
-        string = self.director + " [" + self.date + "]: "
-        for song_info in self.song_infos:
-            string += "\n\t" + song_info.__str__()
+        return unicode(self).encode('utf-8')
+
+    def __unicode__(self):
+        string = u''
+        if len(self.song_infos) > 0:
+            string = self.director + " [" + self.date + "]: "
+            for song_info in self.song_infos:
+                string += u"\n\t" + song_info.__unicode__()
         return string
