@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>classes package &mdash; ChoirTracker 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="ChoirTracker 0.1 documentation" href="../../../index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="classes-package">
+<h1>classes package<a class="headerlink" href="#classes-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-classes.basic_message">
+<span id="classes-basic-message-module"></span><h2>classes.basic_message module<a class="headerlink" href="#module-classes.basic_message" title="Permalink to this headline">¶</a></h2>
+<p>Provides easy access to key features of the underlying message</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">classes.basic_message</span> <span class="k">import</span> <span class="n">BasicMessage</span>
+<span class="n">basic_message</span> <span class="o">=</span> <span class="n">BasicMessage</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">subject</span> <span class="o">=</span> <span class="n">basic_message</span><span class="o">.</span><span class="n">get_header_value</span><span class="p">(</span><span class="s2">&quot;Subject&quot;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">basic_message</span><span class="o">.</span><span class="n">get_full_body</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">basic_message</span><span class="o">.</span><span class="n">get_full_body</span><span class="p">(</span><span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="classes.basic_message.BasicMessage">
+<em class="property">class </em><code class="descclassname">classes.basic_message.</code><code class="descname">BasicMessage</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/basic_message.html#BasicMessage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.basic_message.BasicMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A basic message which allows easier access to the underlying message
+from gmail</p>
+<p><a class="reference external" href="https://developers.google.com/gmail/api/v1/reference/users/messages#resource-representations">https://developers.google.com/gmail/api/v1/reference/users/messages#resource-representations</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) &#8211; JSON message string from gmail</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="classes.basic_message.BasicMessage.get_full_body">
+<code class="descname">get_full_body</code><span class="sig-paren">(</span><em>mime_type</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/basic_message.html#BasicMessage.get_full_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.basic_message.BasicMessage.get_full_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the full body from the message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mime_type</strong> &#8211; The mime type to get. Examples are &#8216;text/plain&#8217; and</li>
+<li><strong>'text/html'</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Unicode message in the format requested</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="classes.basic_message.BasicMessage.get_header_value">
+<code class="descname">get_header_value</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/basic_message.html#BasicMessage.get_header_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.basic_message.BasicMessage.get_header_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of the associated header name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; The name of the header. Examples are Subject and Date</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Unicode value associated with the header name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.email_retriever">
+<span id="classes-email-retriever-module"></span><h2>classes.email_retriever module<a class="headerlink" href="#module-classes.email_retriever" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.email_retriever.EmailRetriever">
+<em class="property">class </em><code class="descclassname">classes.email_retriever.</code><code class="descname">EmailRetriever</code><span class="sig-paren">(</span><em>client_secret_file</em>, <em>sender_configuration</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/email_retriever.html#EmailRetriever"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.email_retriever.EmailRetriever" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the GMail API to pull messages with a specific subject from specific_people</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client_secret_file</strong> &#8211; <a class="reference external" href="https://developers.google.com/api-client-library/python/guide/aaa_client_secrets">https://developers.google.com/api-client-library/python/guide/aaa_client_secrets</a></li>
+<li><strong>sender_configuration</strong> &#8211; JSON file to specify who to retrieve emails from and what to look for</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Developer Resources:</dt>
+<dd><a class="reference external" href="https://developers.google.com/gmail/api/auth/web-server#create_a_client_id_and_client_secret">https://developers.google.com/gmail/api/auth/web-server#create_a_client_id_and_client_secret</a>
+<a class="reference external" href="https://developers.google.com/resources/api-libraries/documentation/gmail/v1/python/latest/gmail_v1.users.messages.html">https://developers.google.com/resources/api-libraries/documentation/gmail/v1/python/latest/gmail_v1.users.messages.html</a></dd>
+</dl>
+<p>Example Sender Configuration:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="nt">&quot;Sender&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span><span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Barb Schenk&quot;</span><span class="p">,</span> <span class="nt">&quot;Search&quot;</span><span class="p">:</span> <span class="s2">&quot;Songs for&quot;</span><span class="p">},</span>
+  <span class="p">{</span><span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jason Baisch&quot;</span><span class="p">,</span> <span class="nt">&quot;Search&quot;</span><span class="p">:</span> <span class="s2">&quot;Songs for&quot;</span><span class="p">},</span>
+  <span class="p">{</span><span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jonathan White&quot;</span><span class="p">,</span> <span class="nt">&quot;Search&quot;</span><span class="p">:</span> <span class="s2">&quot;Songs for&quot;</span><span class="p">}</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="classes.email_retriever.EmailRetriever.get_basic_messages">
+<code class="descname">get_basic_messages</code><span class="sig-paren">(</span><em>sender</em>, <em>search_term</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/email_retriever.html#EmailRetriever.get_basic_messages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.email_retriever.EmailRetriever.get_basic_messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.group">
+<span id="classes-group-module"></span><h2>classes.group module<a class="headerlink" href="#module-classes.group" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.group.Group">
+<em class="property">class </em><code class="descclassname">classes.group.</code><code class="descname">Group</code><span class="sig-paren">(</span><em>position</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/group.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.group.Group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-classes.html_song_list_extractor">
+<span id="classes-html-song-list-extractor-module"></span><h2>classes.html_song_list_extractor module<a class="headerlink" href="#module-classes.html_song_list_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.html_song_list_extractor.HTMLSongListExtractor">
+<em class="property">class </em><code class="descclassname">classes.html_song_list_extractor.</code><code class="descname">HTMLSongListExtractor</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/html_song_list_extractor.html#HTMLSongListExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.html_song_list_extractor.HTMLSongListExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="classes.html_song_list_extractor.HTMLSongListExtractor.convert_row_to_line">
+<code class="descname">convert_row_to_line</code><span class="sig-paren">(</span><em>row</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/html_song_list_extractor.html#HTMLSongListExtractor.convert_row_to_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.html_song_list_extractor.HTMLSongListExtractor.convert_row_to_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.html_song_list_extractor.HTMLSongListExtractor.convert_table_to_lines">
+<code class="descname">convert_table_to_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/html_song_list_extractor.html#HTMLSongListExtractor.convert_table_to_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.html_song_list_extractor.HTMLSongListExtractor.convert_table_to_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.html_song_list_extractor.HTMLSongListExtractor.extract_song_list">
+<code class="descname">extract_song_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/html_song_list_extractor.html#HTMLSongListExtractor.extract_song_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.html_song_list_extractor.HTMLSongListExtractor.extract_song_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.jason_song_list_extractor">
+<span id="classes-jason-song-list-extractor-module"></span><h2>classes.jason_song_list_extractor module<a class="headerlink" href="#module-classes.jason_song_list_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.jason_song_list_extractor.JasonSongListExtractor">
+<em class="property">class </em><code class="descclassname">classes.jason_song_list_extractor.</code><code class="descname">JasonSongListExtractor</code><span class="sig-paren">(</span><em>text</em>, <em>html</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/jason_song_list_extractor.html#JasonSongListExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.jason_song_list_extractor.JasonSongListExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#classes.song_list_extractor.SongListExtractor" title="classes.song_list_extractor.SongListExtractor"><code class="xref py py-class docutils literal"><span class="pre">classes.song_list_extractor.SongListExtractor</span></code></a></p>
+<dl class="method">
+<dt id="classes.jason_song_list_extractor.JasonSongListExtractor.extract_song_list">
+<code class="descname">extract_song_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/jason_song_list_extractor.html#JasonSongListExtractor.extract_song_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.jason_song_list_extractor.JasonSongListExtractor.extract_song_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.jason_song_list_extractor.JasonSongListExtractor.get_info_from_line">
+<code class="descname">get_info_from_line</code><span class="sig-paren">(</span><em>song_line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/jason_song_list_extractor.html#JasonSongListExtractor.get_info_from_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.jason_song_list_extractor.JasonSongListExtractor.get_info_from_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.song_info">
+<span id="classes-song-info-module"></span><h2>classes.song_info module<a class="headerlink" href="#module-classes.song_info" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.song_info.SongInfo">
+<em class="property">class </em><code class="descclassname">classes.song_info.</code><code class="descname">SongInfo</code><span class="sig-paren">(</span><em>book</em>, <em>number</em>, <em>title</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_info.html#SongInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_info.SongInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-classes.song_list">
+<span id="classes-song-list-module"></span><h2>classes.song_list module<a class="headerlink" href="#module-classes.song_list" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.song_list.SongList">
+<em class="property">class </em><code class="descclassname">classes.song_list.</code><code class="descname">SongList</code><span class="sig-paren">(</span><em>director</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list.html#SongList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list.SongList" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="classes.song_list.SongList.add_song_info">
+<code class="descname">add_song_info</code><span class="sig-paren">(</span><em>song_info</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list.html#SongList.add_song_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list.SongList.add_song_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list.SongList.set_date">
+<code class="descname">set_date</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list.html#SongList.set_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list.SongList.set_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.song_list_extractor">
+<span id="classes-song-list-extractor-module"></span><h2>classes.song_list_extractor module<a class="headerlink" href="#module-classes.song_list_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.song_list_extractor.SongListExtractor">
+<em class="property">class </em><code class="descclassname">classes.song_list_extractor.</code><code class="descname">SongListExtractor</code><span class="sig-paren">(</span><em>text</em>, <em>html</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.contains_number">
+<code class="descname">contains_number</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.contains_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.contains_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.contains_song">
+<code class="descname">contains_song</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.contains_song"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.contains_song" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.convert_row_to_line">
+<code class="descname">convert_row_to_line</code><span class="sig-paren">(</span><em>row</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.convert_row_to_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.convert_row_to_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.convert_tables_to_lines">
+<code class="descname">convert_tables_to_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.convert_tables_to_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.convert_tables_to_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.count_words">
+<code class="descname">count_words</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.count_words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.count_words" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.does_html_contain_table">
+<code class="descname">does_html_contain_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.does_html_contain_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.does_html_contain_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.extract_song_list">
+<code class="descname">extract_song_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.extract_song_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.extract_song_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.get_book_and_number_from_code">
+<code class="descname">get_book_and_number_from_code</code><span class="sig-paren">(</span><em>book_and_number_code</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.get_book_and_number_from_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.get_book_and_number_from_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.get_number_groups_from_line">
+<code class="descname">get_number_groups_from_line</code><span class="sig-paren">(</span><em>song_line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.get_number_groups_from_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.get_number_groups_from_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.get_word_groups_from_line">
+<code class="descname">get_word_groups_from_line</code><span class="sig-paren">(</span><em>song_line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.get_word_groups_from_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.get_word_groups_from_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.is_original_in_reply">
+<code class="descname">is_original_in_reply</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.is_original_in_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.is_original_in_reply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.pick_book_and_number_from_number_groups">
+<code class="descname">pick_book_and_number_from_number_groups</code><span class="sig-paren">(</span><em>number_groups</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.pick_book_and_number_from_number_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.pick_book_and_number_from_number_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.pick_title_from_word_groups">
+<code class="descname">pick_title_from_word_groups</code><span class="sig-paren">(</span><em>word_groups</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.pick_title_from_word_groups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.pick_title_from_word_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.remove_markdown">
+<code class="descname">remove_markdown</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.remove_markdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.remove_markdown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.remove_non_song_lines">
+<code class="descname">remove_non_song_lines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.remove_non_song_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.remove_non_song_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.remove_parenthesis">
+<code class="descname">remove_parenthesis</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.remove_parenthesis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.remove_parenthesis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.song_list_extractor.SongListExtractor.remove_spaces_before_numbers">
+<code class="descname">remove_spaces_before_numbers</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/song_list_extractor.html#SongListExtractor.remove_spaces_before_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.song_list_extractor.SongListExtractor.remove_spaces_before_numbers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes.test_jason_song_list_extractor">
+<span id="classes-test-jason-song-list-extractor-module"></span><h2>classes.test_jason_song_list_extractor module<a class="headerlink" href="#module-classes.test_jason_song_list_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase">
+<em class="property">class </em><code class="descclassname">classes.test_jason_song_list_extractor.</code><code class="descname">JasonSongListExtractorTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_in_original_in_reply">
+<code class="descname">test_songs_in_original_in_reply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_in_original_in_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_in_original_in_reply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_amperstands">
+<code class="descname">test_songs_with_amperstands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_amperstands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_amperstands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_apostrophes">
+<code class="descname">test_songs_with_apostrophes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_apostrophes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_apostrophes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_book_and_number_after_the_title">
+<code class="descname">test_songs_with_book_and_number_after_the_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_book_and_number_after_the_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_book_and_number_after_the_title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_markdown">
+<code class="descname">test_songs_with_markdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_markdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_markdown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_parenthesis">
+<code class="descname">test_songs_with_parenthesis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_parenthesis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_parenthesis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_spaces_between_the_book_and_number">
+<code class="descname">test_songs_with_spaces_between_the_book_and_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_spaces_between_the_book_and_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_spaces_between_the_book_and_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_unicode">
+<code class="descname">test_songs_with_unicode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_unicode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_unicode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_verses_after_the_title">
+<code class="descname">test_songs_with_verses_after_the_title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/classes/test_jason_song_list_extractor.html#JasonSongListExtractorTestCase.test_songs_with_verses_after_the_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#classes.test_jason_song_list_extractor.JasonSongListExtractorTestCase.test_songs_with_verses_after_the_title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-classes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-classes" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">classes package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-classes.basic_message">classes.basic_message module</a></li>
+<li><a class="reference internal" href="#module-classes.email_retriever">classes.email_retriever module</a></li>
+<li><a class="reference internal" href="#module-classes.group">classes.group module</a></li>
+<li><a class="reference internal" href="#module-classes.html_song_list_extractor">classes.html_song_list_extractor module</a></li>
+<li><a class="reference internal" href="#module-classes.jason_song_list_extractor">classes.jason_song_list_extractor module</a></li>
+<li><a class="reference internal" href="#module-classes.song_info">classes.song_info module</a></li>
+<li><a class="reference internal" href="#module-classes.song_list">classes.song_list module</a></li>
+<li><a class="reference internal" href="#module-classes.song_list_extractor">classes.song_list_extractor module</a></li>
+<li><a class="reference internal" href="#module-classes.test_jason_song_list_extractor">classes.test_jason_song_list_extractor module</a></li>
+<li><a class="reference internal" href="#module-classes">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/song_extractor/bin/_build/classes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Jonathan White.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/song_extractor/bin/_build/classes.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
