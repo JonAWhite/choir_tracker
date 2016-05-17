@@ -1,0 +1,71 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+APPLICATION_NAME	email_retriever.py	/^APPLICATION_NAME = 'Gmail API Python Quickstart'$/;"	v
+BasicMessage	basic_message.py	/^class BasicMessage(object):$/;"	c	inherits:object
+BasicMessages	basic_message.py	/^class BasicMessages(list):$/;"	c	inherits:list
+EmailRetriever	email_retriever.py	/^class EmailRetriever:$/;"	c	inherits:
+Group	group.py	/^class Group:$/;"	c	inherits:
+HTMLSongListExtractor	html_song_list_extractor.py	/^class HTMLSongListExtractor:$/;"	c	inherits:
+JasonSongListExtractor	jason_song_list_extractor.py	/^class JasonSongListExtractor(SongListExtractor):$/;"	c	inherits:SongListExtractor
+JasonSongListExtractorTestCase	test_jason_song_list_extractor.py	/^class JasonSongListExtractorTestCase(unittest.TestCase):$/;"	c	inherits:unittest.TestCase
+SCOPES	email_retriever.py	/^SCOPES = 'https:\/\/www.googleapis.com\/auth\/gmail.readonly'$/;"	v
+SongInfo	song_info.py	/^class SongInfo:$/;"	c	inherits:
+SongList	song_list.py	/^class SongList:$/;"	c	inherits:
+SongListExtractor	song_list_extractor.py	/^class SongListExtractor:$/;"	c	inherits:
+__init__	basic_message.py	/^    def __init__(self, message):$/;"	m	class:BasicMessage	access:public
+__init__	basic_message.py	/^    def __init__(self, page_token=None):$/;"	m	class:BasicMessages	access:public
+__init__	email_retriever.py	/^    def __init__(self, client_secret_file, sender_configuration):$/;"	m	class:EmailRetriever	access:public
+__init__	group.py	/^    def __init__(self, position, value):$/;"	m	class:Group	access:public
+__init__	html_song_list_extractor.py	/^    def __init__(self, text):$/;"	m	class:HTMLSongListExtractor	access:public
+__init__	song_info.py	/^    def __init__(self, book, number, title):$/;"	m	class:SongInfo	access:public
+__init__	song_list.py	/^    def __init__(self, director):$/;"	m	class:SongList	access:public
+__init__	song_list_extractor.py	/^    def __init__(self, text, html):$/;"	m	class:SongListExtractor	access:public
+__str__	group.py	/^    def __str__(self):$/;"	m	class:Group	file:	access:private
+__str__	song_info.py	/^    def __str__(self):$/;"	m	class:SongInfo	file:	access:private
+__str__	song_list.py	/^    def __str__(self):$/;"	m	class:SongList	file:	access:private
+__unicode__	group.py	/^    def __unicode__(self):$/;"	m	class:Group	file:	access:private
+__unicode__	song_info.py	/^    def __unicode__(self):$/;"	m	class:SongInfo	file:	access:private
+__unicode__	song_list.py	/^    def __unicode__(self):$/;"	m	class:SongList	file:	access:private
+_get_credentials	email_retriever.py	/^    def _get_credentials(this, client_secret_file):$/;"	m	class:EmailRetriever	access:public
+_open_func_bak	email_retriever.py	/^    _open_func_bak = open # Make a back up, just in case$/;"	v
+add_song_info	song_list.py	/^    def add_song_info(self, song_info):$/;"	m	class:SongList	access:public
+contains_number	song_list_extractor.py	/^    def contains_number(self, line):$/;"	m	class:SongListExtractor	access:public
+contains_song	song_list_extractor.py	/^    def contains_song(self, line):$/;"	m	class:SongListExtractor	access:public
+convert_row_to_line	html_song_list_extractor.py	/^    def convert_row_to_line(self, row):$/;"	m	class:HTMLSongListExtractor	access:public
+convert_row_to_line	song_list_extractor.py	/^    def convert_row_to_line(self, row):$/;"	m	class:SongListExtractor	access:public
+convert_table_to_lines	html_song_list_extractor.py	/^    def convert_table_to_lines(self):$/;"	m	class:HTMLSongListExtractor	access:public
+convert_tables_to_lines	song_list_extractor.py	/^    def convert_tables_to_lines(self):$/;"	m	class:SongListExtractor	access:public
+count_words	song_list_extractor.py	/^    def count_words(self, text):$/;"	m	class:SongListExtractor	access:public
+does_html_contain_table	song_list_extractor.py	/^    def does_html_contain_table(self):$/;"	m	class:SongListExtractor	access:public
+extract_song_list	html_song_list_extractor.py	/^    def extract_song_list(self):$/;"	m	class:HTMLSongListExtractor	access:public
+extract_song_list	jason_song_list_extractor.py	/^    def extract_song_list(self):$/;"	m	class:JasonSongListExtractor	access:public
+extract_song_list	song_list_extractor.py	/^    def extract_song_list(self):$/;"	m	class:SongListExtractor	access:public
+get_basic_messages	email_retriever.py	/^    def get_basic_messages(self, sender, search_term, page_token=None, max_results=None):$/;"	m	class:EmailRetriever	access:public
+get_book_and_number_from_code	song_list_extractor.py	/^    def get_book_and_number_from_code(self, book_and_number_code):$/;"	m	class:SongListExtractor	access:public
+get_full_body	basic_message.py	/^    def get_full_body(self, mime_type):$/;"	m	class:BasicMessage	access:public
+get_header_value	basic_message.py	/^    def get_header_value(self, name):$/;"	m	class:BasicMessage	access:public
+get_info_from_line	jason_song_list_extractor.py	/^    def get_info_from_line(self, song_line):$/;"	m	class:JasonSongListExtractor	access:public
+get_number_groups_from_line	song_list_extractor.py	/^    def get_number_groups_from_line(self, song_line):$/;"	m	class:SongListExtractor	access:public
+get_word_groups_from_line	song_list_extractor.py	/^    def get_word_groups_from_line(self, song_line):$/;"	m	class:SongListExtractor	access:public
+is_original_in_reply	song_list_extractor.py	/^    def is_original_in_reply(self, line):$/;"	m	class:SongListExtractor	access:public
+open	email_retriever.py	/^    open = codecs.open$/;"	v
+pick_book_and_number_from_number_groups	song_list_extractor.py	/^    def pick_book_and_number_from_number_groups(self, number_groups):$/;"	m	class:SongListExtractor	access:public
+pick_title_from_word_groups	song_list_extractor.py	/^    def pick_title_from_word_groups(self, word_groups):$/;"	m	class:SongListExtractor	access:public
+remove_markdown	song_list_extractor.py	/^    def remove_markdown(self, line):$/;"	m	class:SongListExtractor	access:public
+remove_non_song_lines	song_list_extractor.py	/^    def remove_non_song_lines(self):$/;"	m	class:SongListExtractor	access:public
+remove_parenthesis	song_list_extractor.py	/^    def remove_parenthesis(self, line):$/;"	m	class:SongListExtractor	access:public
+remove_spaces_before_numbers	song_list_extractor.py	/^    def remove_spaces_before_numbers(self, line):$/;"	m	class:SongListExtractor	access:public
+set_date	song_list.py	/^    def set_date(self, date):$/;"	m	class:SongList	access:public
+test_songs_in_original_in_reply	test_jason_song_list_extractor.py	/^    def test_songs_in_original_in_reply(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_amperstands	test_jason_song_list_extractor.py	/^    def test_songs_with_amperstands(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_apostrophes	test_jason_song_list_extractor.py	/^    def test_songs_with_apostrophes(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_book_and_number_after_the_title	test_jason_song_list_extractor.py	/^    def test_songs_with_book_and_number_after_the_title(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_markdown	test_jason_song_list_extractor.py	/^    def test_songs_with_markdown(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_parenthesis	test_jason_song_list_extractor.py	/^    def test_songs_with_parenthesis(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_spaces_between_the_book_and_number	test_jason_song_list_extractor.py	/^    def test_songs_with_spaces_between_the_book_and_number(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_unicode	test_jason_song_list_extractor.py	/^    def test_songs_with_unicode(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public
+test_songs_with_verses_after_the_title	test_jason_song_list_extractor.py	/^    def test_songs_with_verses_after_the_title(self):$/;"	m	class:JasonSongListExtractorTestCase	access:public

@@ -8,14 +8,15 @@ if sys.version_info[0] < 3:
     open = codecs.open
 
 import httplib2
-# import json
+import json
+import oauth2client
 import os
 
 from apiclient import discovery
-import oauth2client
 from oauth2client import client
-from oauth2client import tools
-from classes.jason_song_list_extractor import JasonSongListExtractor
+# from pprint import pprint
+
+from classes.basic_message import BasicMessage, BasicMessages
 
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 APPLICATION_NAME = 'Gmail API Python Quickstart'
@@ -46,11 +47,14 @@ class EmailRetriever:
 
     """
 
-    def __init__(self, client_secret_file, sender_configuration):
+    def __init__(self, client_secret_file, sender_configuration, flags):
+        self.client_secret_file = client_secret_file
         self.sender_configuration = sender_configuration
+        self.flags = flags
         credentials = self._get_credentials(client_secret_file)
         http = credentials.authorize(httplib2.Http())
         self.service = discovery.build('gmail', 'v1', http=http)
+        self._initialize_senders()
 
     def get_basic_messages(self, sender, search_term, page_token=None, max_results=None):
         """Gets basic messages from GMail
@@ -62,16 +66,31 @@ class EmailRetriever:
             max_results (int): Maximum number of messages to return.
 
         """
-        query = '"' + search_term + "' from: " + sender
+        query = "'" + search_term + "' from: " + sender
+        print("Query: " + query)
         search_results = self.service.users().messages().list(
             userId='me',
             labelIds=None,
             q=query,
             pageToken=page_token,
             maxResults=max_results).execute()
-        messages = search_results.get('messages', [])
+        message_ids = search_results.get('messages', [])
 
-    def _get_credentials(this, client_secret_file):
+        # TODO(JWHITE) - add in the page token
+        basic_messages = BasicMessages()
+        for message_id in message_ids:
+            message = self._get_message_from_message_id(message_id)
+            basic_messages.append(BasicMessage(message))
+        
+        return basic_messages
+
+    def _get_message_from_message_id(self, message_id):
+        message = self.service.users().messages().get(
+                    userId='me', id=message_id['id'],
+                    format='full').execute()
+        return message
+
+    def _get_credentials(self, client_secret_file):
         """Gets valid user credentials from storage.
 
         If nothing has been stored, or if the stored credentials are invalid,
@@ -90,10 +109,13 @@ class EmailRetriever:
         store = oauth2client.file.Storage(credential_path)
         credentials = store.get()
         if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(this.client_secret_file, SCOPES)
+            flow = client.flow_from_clientsecrets(self.client_secret_file, SCOPES)
             flow.user_agent = APPLICATION_NAME
-            flags = tools.argparser.parse_args(args=[])
-            credentials = tools.run_flow(flow, store, flags)
+            credentials = tools.run_flow(flow, store, self.flags)
             print('Storing credentials to ' + credential_path)
         return credentials
 
+    def _initialize_senders(self):
+        sender_file = open(self.sender_configuration, 'r')
+        self.senders = json.load(sender_file)
+        # pprint(self.senders)

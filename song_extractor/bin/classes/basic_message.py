@@ -12,6 +12,7 @@ Example::
 """
 
 import base64
+import json
 
 class BasicMessage(object):
     """A basic message which allows easier access to the underlying message
@@ -25,7 +26,7 @@ class BasicMessage(object):
     """
 
     def __init__(self, message):
-        self.message = message
+        self.message = message 
 
     def get_full_body(self, mime_type):
         """Get the full body from the message
@@ -38,7 +39,13 @@ class BasicMessage(object):
             Unicode message in the format requested
 
         """
-        parts = self.message['payload']['parts']
+        parts = []
+        if 'parts' in self.message['payload'].keys():
+            parts = self.message['payload']['parts']
+        else:
+            print json.dumps(self.message['payload'])
+            parts = [ self.message['payload'] ]
+
         full_body = ""
         for part in parts:
             if part['mimeType'] != mime_type:
@@ -72,6 +79,6 @@ class BasicMessage(object):
 
 class BasicMessages(list):
     def __init__(self, page_token=None):
-        list.__init__()
+        list.__init__([])
         self.page_token = page_token
 
