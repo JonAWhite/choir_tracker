@@ -28,7 +28,9 @@ set guioptions-=R
 set guioptions-=L
 set guioptions-=e
 
-" Vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -36,7 +38,8 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
+
 " Bundle 'Shougo/neocomplete.vim'
 " Bundle 'bling/vim-airline'
 " Bundle 'jiangmiao/auto-pairs'
@@ -108,6 +111,7 @@ Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-scripts/genutils'
 Bundle 'vim-scripts/ingo-library'
 Bundle 'vim-scripts/sh.vim'
+Bundle 'altercation/vim-colors-solarized'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -151,7 +155,9 @@ set hlsearch
 set t_Co=256
 " colorscheme
 let g:solarized_termcolors=256
-colorscheme solarized 
+syntax enable
+set background=dark
+colorscheme solarized
 
 " searchfold
 nnoremap <silent> ufa :set foldlevel=99<CR>
