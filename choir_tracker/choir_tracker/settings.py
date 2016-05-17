@@ -78,6 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'choir_tracker',
+        'USER': 'root',
+        'PASSWORD': os.environ['MYSQL_ENV_MYSQL_ROOT_PASSWORD'], 
+        'HOST': os.environ['MYSQL_PORT_3306_TCP_ADDR'],
+        'PORT': os.environ['MYSQL_PORT_3306_TCP_PORT'],
     }
 }
 
